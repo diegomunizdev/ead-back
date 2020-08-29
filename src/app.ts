@@ -4,6 +4,8 @@ import cors from 'cors'
 
 const app: Application = express();
 
+import Routes from './routes/routes'
+
 // middlewares
 app.use(morgan('dev'));
 app.use(express.json());
@@ -17,5 +19,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 // routes
+app.use('/ead', Routes);
 
 export default app;
