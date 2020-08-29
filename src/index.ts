@@ -8,7 +8,7 @@ const port: string = process.env.HTTP_PORT ? process.env.HTTP_PORT : ''
 
 function main() {
     app.listen(port);
-    console.log(`>> Server running on http://localhost:${port}`);
+    console.log(`>> Servidor rodando http://localhost:${port}`);
 }
 
 main();
