@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import User, { IUser } from '../models/user.model'
 import bcrypt from 'bcrypt'
 
-// TODO: Verificaros códigos HTTP
+// TODO: Verificar os códigos HTTP
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {

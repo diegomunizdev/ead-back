@@ -9,11 +9,12 @@ export enum UserType {
 }
 
 export interface IUser extends Document {
-    name: string,
-    email: string,
-    password: string | undefined,
-    type: UserType, // admin, teacher, tutor and student
-    encryptPassword(password: string): Promise<string>,
+    name: string
+    email: string
+    password: string | undefined
+    type: UserType // admin, teacher, tutor and student
+    punctuation: number
+    encryptPassword(password: string): Promise<string>
     validatePassword(password: string): Promise<boolean>
 }
 
