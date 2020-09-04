@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import User, { IUser } from '../models/user.model'
+import User, { IUser, UserType } from '../models/user.model'
+import { PaginationDataType } from '../shared/pagination.shared'
 import bcrypt from 'bcrypt'
 
 // TODO: Verificar os códigos HTTP
@@ -33,6 +34,30 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
     }
 }
 
+export const getByType = PaginationDataType(User)
+
+/* export const getByType = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const usertype = await User.find({ type: req.params.usertype as UserType })
+
+        if (!usertype) res.status(400).json({
+            code: 400,
+            message: 'Usuários não encontrados',
+            description: ''
+        })
+        usertype.map(user => user.password = undefined)
+        res.status(200).json({
+            code: 200,
+            data: usertype
+        })
+    } catch (error) {
+        res.status(400).json({
+            code: 400,
+            message: error.message
+        })
+    }
+} */
+
 export const getAll = async (req: Request, res: Response): Promise<void> => {
     try {
         const users = await User.find()
@@ -42,6 +67,7 @@ export const getAll = async (req: Request, res: Response): Promise<void> => {
             description: 'Não foi possível retornar os usuários'
         })
 
+        users.map(user => user.password = undefined)
         res.status(200).json({
             code: 200,
             data: users
@@ -89,6 +115,8 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             email: req.body.email,
             password: req.body.password,
             type: req.body.type,
+            gamePoints: req.body.gamePoints,
+            notes: req.body.notes,
             encryptPassword: async (password: string): Promise<string> => {
                 password = req.body.password
                 const salt = await bcrypt.genSalt(10);
