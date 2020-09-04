@@ -89,11 +89,7 @@ export const getByUserId = async (req: Request, res: Response) => {
             description: ''
         })
         user ? user.password = undefined : ''
-        res.status(200).json({
-            code: 200,
-            message: 'Usuário atualizado com sucesso',
-            data: user
-        })
+        res.status(200).json(user)
     } catch (error) {
         res.status(400).json({
             code: 400,
