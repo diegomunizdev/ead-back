@@ -5,8 +5,8 @@ import { createGame, getAll, getByPeriod, updateGame, deleteGame } from '../cont
 
 export const GameRoutes = (routes: Router) => {
     routes.post('/game', TokenValidation, createGame)
-        .get('/game', TokenValidation, getAll)
-        .get('/game/:period', TokenValidation, getByPeriod)
+        .get('/games', TokenValidation, getAll)
+        .get('/game/period/:period', TokenValidation, getByPeriod)
         .patch('/game/:gameId', TokenValidation, updateGame)
         .delete('/game/:gameId', TokenValidation, deleteGame)
 }

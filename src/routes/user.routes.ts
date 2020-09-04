@@ -9,8 +9,8 @@ const url_user = '/user/:userId'
 export const UserRoutes = (routes: Router) => {
     routes.post('/user', createUser)
         .get('/users', TokenValidation, getAll)
-        .get('/user/:usertype', TokenValidation, getByType)
-        .get(`${url_user}`, TokenValidation, getByUserId)
+        .get('/user/type/:usertype', TokenValidation, getByType)
+        .get(`${url_user}/profile`, TokenValidation, getByUserId)
         .patch(`${url_user}`, TokenValidation, updateUser)
         .delete(`${url_user}`, TokenValidation, deleteUser)
 }

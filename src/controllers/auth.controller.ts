@@ -26,7 +26,7 @@ export const signin = async (req: Request, res: Response) => {
         const token_secret = process.env.TOKEN_SECRET ? process.env.TOKEN_SECRET : ''
 
         const token: string = jwt.sign({ id: user ? user._id : '', type: user ? user.type : '' }, token_secret, {
-            expiresIn: '7d'
+            expiresIn: '1d'
         })
 
         if (!token) res.status(400).json({

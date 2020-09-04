@@ -82,7 +82,7 @@ export const getAll = async (req: Request, res: Response): Promise<void> => {
 
 export const getByUserId = async (req: Request, res: Response) => {
     try {
-        const user = await User.findById(req.params.userId)
+        const user = await User.findById({ _id: req.params.userId })
         if (!user) res.status(400).json({
             code: 400,
             message: 'Usuário não foi encontrado',
@@ -91,7 +91,6 @@ export const getByUserId = async (req: Request, res: Response) => {
         user ? user.password = undefined : ''
         res.status(200).json({
             code: 200,
-            message: 'Usuário atualizado com sucesso',
             data: user
         })
     } catch (error) {
