@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { TokenValidation } from '../middlewares/token.validation';
-import { createUser, getByUserId, getAll, updateUser, deleteUser } from '../controllers/user.controller'
+import { createUser, getByUserId, getByType, getAll, updateUser, deleteUser } from '../controllers/user.controller'
 
 const url_user = '/user/:userId'
 
@@ -9,6 +9,7 @@ const url_user = '/user/:userId'
 export const UserRoutes = (routes: Router) => {
     routes.post('/user', createUser)
         .get('/users', TokenValidation, getAll)
+        .get('/user/:usertype', TokenValidation, getByType)
         .get(`${url_user}`, TokenValidation, getByUserId)
         .patch(`${url_user}`, TokenValidation, updateUser)
         .delete(`${url_user}`, TokenValidation, deleteUser)

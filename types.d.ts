@@ -6,6 +6,6 @@ declare namespace Express {
 
 declare namespace Express {
     export interface Request {
-        type: string
+        types: string
     }
 }

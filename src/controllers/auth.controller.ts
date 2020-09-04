@@ -36,6 +36,7 @@ export const signin = async (req: Request, res: Response) => {
 
         user ? user.password = undefined : ''
         // TODO: conferir se é necessário retornar o .json({ status: 200, Authorization: token })
+        // PARA MELHOR TESTAR POR ENQUANTO ESTÁ ENVIANDO O JSON DESSA FORMA
         res.header('Authorization', token).json({ status: 200, Authorization: token })
     } catch (error) {
         res.status(400).json({
