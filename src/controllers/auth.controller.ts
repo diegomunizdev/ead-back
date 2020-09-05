@@ -35,7 +35,7 @@ export const signin = async (req: Request, res: Response) => {
         })
 
         user ? user.password = undefined : ''
-        res.header('Authorization', token).json()
+        res.header('Authorization', token).json({ Authorization: token })
     } catch (error) {
         res.status(400).json({
             code: 400,
