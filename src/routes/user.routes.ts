@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 // TODO: Adicionar o token na rota posteriormente
-// import { TokenValidation } from '../middlewares/token.validation';
+import { TokenValidation } from '../middlewares/token.validation';
 import { createUser, getByUserId, getByType, getAll, updateUser, deleteUser } from '../controllers/user.controller'
 
 const url_user = '/user/:userId'
@@ -12,11 +12,11 @@ export const UserRoutes = (routes: Router) => {
                 // /users?page=1&limit=10
                 .get('/users', getAll)
                 // /user/type/:usertype?page=1&limit=10 - troque o :usertype por admin, teacher, student ou tutor 
-                .get('/user/type/:usertype', getByType)
+                .get('/user/type/:usertype', TokenValidation, getByType)
                 // dê um getAll, e no resultado pegue o id de qualquer usuário e coloque no lugar no :userId
-                .get(`${url_user}/profile`, getByUserId)
-                .patch(`${url_user}/update`, updateUser)
-                .delete(`${url_user}/delete`, deleteUser)
+                .get(`${url_user}/profile`, TokenValidation, getByUserId)
+                .patch(`${url_user}/update`, TokenValidation, updateUser)
+                .delete(`${url_user}/delete`, TokenValidation, deleteUser)
 }
 
 /**
