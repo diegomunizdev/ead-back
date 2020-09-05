@@ -6,7 +6,6 @@ export const PaginationData = (model: any) => {
         const page = parseInt(String(req.query.page), 10)
         const limit = parseInt(String(req.query.limit), 10)
 
-
         const startIndex = (page - 1) * limit
         const endIndex = page * limit
 
@@ -45,10 +44,7 @@ export const PaginationData = (model: any) => {
                 description: ''
             })
 
-            res.status(200).json({
-                code: 200,
-                data: result
-            })
+            res.status(200).json(result)
         } catch (error) {
             res.status(400).json({
                 code: 400,
@@ -67,6 +63,10 @@ export const PaginationDataType = (model: any) => {
             page = parseInt(String(req.query.page), 10)
             limit = parseInt(String(req.query.limit), 10)
             type = req.params.usertype
+        } else {
+            res.json({
+                message: 'Parâmetros não encontrados'
+            })
         }
 
         const startIndex = (page - 1) * limit
@@ -122,10 +122,7 @@ export const PaginationDataType = (model: any) => {
             })
 
             result.data.map((dt: any) => dt.password = undefined)
-            res.status(200).json({
-                code: 200,
-                result
-            })
+            res.status(200).json(result)
         } catch (error) {
             res.status(400).json({
                 code: 400,

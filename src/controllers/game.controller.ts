@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Game, { IGame } from '../models/game.model'
+import { PaginationData } from '../shared/pagination.shared'
 
 export const createGame = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -12,10 +13,7 @@ export const createGame = async (req: Request, res: Response): Promise<void> => 
 
         await game.save()
 
-        res.status(201).json({
-            code: 201,
-            message: 'Perguntas e respostas criadas com sucesso'
-        })
+        res.status(201).json(game)
     } catch (error) {
         res.status(400).json({
             code: 400,
@@ -24,27 +22,7 @@ export const createGame = async (req: Request, res: Response): Promise<void> => 
     }
 }
 
-
-export const getAll = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const games = await Game.find()
-        if (!games) res.status(400).json({
-            code: 400,
-            message: 'Não foi possível encontrar as perguntas e respostas',
-            description: ''
-        })
-
-        res.status(200).json({
-            code: 200,
-            data: games
-        })
-    } catch (error) {
-        res.status(400).json({
-            code: 400,
-            message: error.message
-        })
-    }
-}
+export const getAll = PaginationData(Game)
 
 export const getByPeriod = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -55,10 +33,7 @@ export const getByPeriod = async (req: Request, res: Response): Promise<void> =>
             message: 'Não foi possível mostrar os dados desse período'
         })
 
-        res.status(200).json({
-            code: 200,
-            data: game
-        })
+        res.status(200).json(game)
 
     } catch (error) {
         res.status(400).json({
@@ -90,10 +65,7 @@ export const updateGame = async (req: Request, res: Response): Promise<void> => 
             $set: updateGame
         }, { new: true })
 
-        res.status(200).json({
-            code: 200,
-            message: 'Dados da questão atualizado com sucesso'
-        })
+        res.status(200).json(updateGame)
     } catch (error) {
         res.status(400).json({
             code: 400,

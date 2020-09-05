@@ -13,6 +13,7 @@ export interface IUser extends Document {
     email: string
     password: string | undefined
     type: UserType // admin, teacher, tutor and student
+    period: number
     gamePoints: number
     notes: number[]
     encryptPassword(password: string): Promise<string>
@@ -38,6 +39,9 @@ const UserSchema = new Mongoose.Schema({
     type: {
         type: UserType,
         required: true
+    },
+    period: {
+        type: Number
     },
     gamePoints: {
         type: Number

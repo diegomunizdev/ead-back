@@ -4,7 +4,7 @@ export interface IGame extends Document {
     question: string
     rightAnswers: string
     wrongAnswers: string[]
-    period: string,
+    period: string
     points: number
 }
 
@@ -13,7 +13,7 @@ const GameSchema = new Mongoose.Schema({
     rightAnswers: { type: String },
     wrongAnswers: { type: Array },
     period: { type: String },
-    points: { type: Number }
+    points: { type: Number, min: 1, max: 10 }
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: false },
     toJSON: {

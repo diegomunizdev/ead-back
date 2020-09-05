@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import User, { IUser, UserType } from '../models/user.model'
-import { PaginationDataType } from '../shared/pagination.shared'
+import { PaginationData, PaginationDataType } from '../shared/pagination.shared'
 import bcrypt from 'bcrypt'
 
 // TODO: Verificar os códigos HTTP
@@ -21,11 +21,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         // TODO: no retorno da resposta a senha não é mostrada
         user.password = undefined
-        res.status(201).json({
-            code: 201,
-            message: 'Usuário criado com sucesso',
-            data: user
-        })
+        res.status(201).json(user)
     } catch (error) {
         res.status(400).json({
             code: 400,
@@ -35,50 +31,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 }
 
 export const getByType = PaginationDataType(User)
-
-/* export const getByType = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const usertype = await User.find({ type: req.params.usertype as UserType })
-
-        if (!usertype) res.status(400).json({
-            code: 400,
-            message: 'Usuários não encontrados',
-            description: ''
-        })
-        usertype.map(user => user.password = undefined)
-        res.status(200).json({
-            code: 200,
-            data: usertype
-        })
-    } catch (error) {
-        res.status(400).json({
-            code: 400,
-            message: error.message
-        })
-    }
-} */
-
-export const getAll = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const users = await User.find()
-        if (!users) res.status(400).json({
-            code: 400,
-            message: 'Usuários não encontrados',
-            description: 'Não foi possível retornar os usuários'
-        })
-
-        users.map(user => user.password = undefined)
-        res.status(200).json({
-            code: 200,
-            data: users
-        })
-    } catch (error) {
-        res.status(400).json({
-            code: 400,
-            message: error.message
-        })
-    }
-}
+export const getAll = PaginationData(User)
 
 export const getByUserId = async (req: Request, res: Response) => {
     try {
@@ -89,14 +42,7 @@ export const getByUserId = async (req: Request, res: Response) => {
             description: ''
         })
         user ? user.password = undefined : ''
-<<<<<<< HEAD
-        res.status(200).json({
-            code: 200,
-            data: user
-        })
-=======
         res.status(200).json(user)
->>>>>>> 597ce98e92efb308f76894c19b0a187606f0b756
     } catch (error) {
         res.status(400).json({
             code: 400,
@@ -118,6 +64,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             email: req.body.email,
             password: req.body.password,
             type: req.body.type,
+            period: req.body.period,
             gamePoints: req.body.gamePoints,
             notes: req.body.notes,
             encryptPassword: async (password: string): Promise<string> => {
@@ -135,11 +82,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
 
         updateUser.password = undefined
 
-        res.status(200).json({
-            code: 200,
-            message: 'Usuário atualizado com sucesso',
-            description: ''
-        })
+        res.status(200).json(updateUser)
     } catch (error) {
         res.status(400).json({
             code: 400,
