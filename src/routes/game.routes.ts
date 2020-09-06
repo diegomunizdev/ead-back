@@ -1,15 +1,15 @@
 import { Router } from 'express'
 
 // TODO: Adicionar o token na rota posteriormente
-import { TokenValidation } from '../middlewares/token.validation'
+import { TokenValidation, TokenValidationAdmin, TokenValidationStudent, TokenValidationTeacher } from '../middlewares/token.validation'
 import { createGame, getAll, getByPeriod, updateGame, deleteGame } from '../controllers/game.controller'
 
 export const GameRoutes = (routes: Router) => {
-    routes.post('/game', createGame)
-        .get('/games', getAll)
-        .get('/game/period/:period', getByPeriod)
-        .patch('/game/:gameId/update', updateGame)
-        .delete('/game/:gameId/delete', deleteGame)
+  routes.post('/game', TokenValidationTeacher, createGame)
+    .get('/games', TokenValidationAdmin, getAll)
+    .get('/game/period/:period', TokenValidationStudent, getByPeriod)
+    .patch('/game/:gameId/update', TokenValidationTeacher, updateGame)
+    .delete('/game/:gameId/delete', TokenValidationTeacher, deleteGame)
 }
 
 /**
