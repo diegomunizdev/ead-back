@@ -54,6 +54,58 @@ export const PaginationData = (model: any) => {
     }
 }
 
+export const PaginationDataGame = (model: any) => {
+    return async (req: Request, res: Response) => {
+        const page = parseInt(String(req.query.page), 10)
+        const limit = parseInt(String(req.query.limit), 10)
+        const period = parseInt(String(req.params.period), 10)
+
+        const startIndex = (page - 1) * limit
+        const endIndex = page * limit
+
+        const result = {
+            "total": await model.countDocuments({ period: period }).exec(),
+            "previous": {},
+            "next": {},
+            "data": []
+        }
+
+        try {
+            if (startIndex > 0) {
+                result.previous = {
+                    page: page - 1,
+                    limit: limit
+                }
+            }
+
+            if (endIndex < await model.countDocuments({ period: period }).exec()) {
+                result.next = {
+                    page: page + 1,
+                    limit: limit
+                }
+            }
+
+            result.data = await model.find({ period: period })
+                .limit(limit)
+                .skip(startIndex)
+                .exec()
+
+            if (!result.data) res.status(400).json({
+                code: 400,
+                message: 'Pergunta não encontrada',
+                description: ''
+            })
+
+            res.status(200).json(result)
+        } catch (error) {
+            res.status(400).json({
+                code: 400,
+                error: error.message
+            })
+        }
+    }
+}
+
 export const PaginationDataType = (model: any) => {
     return async (req: Request, res: Response) => {
         let page: number = 0
