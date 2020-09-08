@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import Game, { IGame } from '../models/game.model'
-import { PaginationData } from '../shared/pagination.shared'
+import { PaginationData, PaginationDataGame } from '../shared/pagination.shared'
 
 export const createGame = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -24,6 +24,8 @@ export const createGame = async (req: Request, res: Response): Promise<void> => 
 
 export const getAll = PaginationData(Game)
 
+export const getByPeriod = PaginationDataGame(Game)
+/* 
 export const getByPeriod = async (req: Request, res: Response): Promise<void> => {
     try {
         const game = await Game.find({ period: req.params.period })
@@ -42,7 +44,7 @@ export const getByPeriod = async (req: Request, res: Response): Promise<void> =>
         })
     }
 }
-
+ */
 
 export const updateGame = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -56,7 +58,7 @@ export const updateGame = async (req: Request, res: Response): Promise<void> => 
         const updateGame = {
             question: req.body.question,
             rightAnswers: req.body.rightAnswers,
-            wrongAnswers: req.body.wrongAnswers,
+            options: req.body.options,
             period: req.body.period,
             points: req.body.points
         }
