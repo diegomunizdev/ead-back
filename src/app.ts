@@ -1,7 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
-
 const app: Application = express();
 
 import Routes from './routes/routes'
@@ -14,6 +13,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,PATCH,OPTIONS,POST,PUT,DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Authorization, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    res.setHeader("Access-Control-Expose-Headers", "X-Total-Count")
     app.use(cors());
     next();
 });

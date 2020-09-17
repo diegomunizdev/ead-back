@@ -36,6 +36,7 @@ export const PaginationData = (model: any) => {
                 .skip(startIndex)
                 .exec()
 
+            // Se o modelo for do tipo usuário a senha não será mostrada no frontend
             result.data.map((dt: any) => dt.password = undefined)
 
             if (!result.data) res.status(400).json({
@@ -43,8 +44,8 @@ export const PaginationData = (model: any) => {
                 message: 'Usuários não encontrados',
                 description: ''
             })
-
-            res.status(200).json(result)
+            res.header('X-Total-Count', result.total)
+            res.json(result)
         } catch (error) {
             res.status(400).json({
                 code: 400,
