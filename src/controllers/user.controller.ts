@@ -9,7 +9,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
     try {
         const user: IUser = new User({
             ...req.body,
-            avatar: `http://localhost:3001/ead/files/${req.file.filename}`
+            avatar: `${process.env.APP_URL}/ead/files/${req.file.filename}`
         })
 
         if (!user) res.status(401).json({

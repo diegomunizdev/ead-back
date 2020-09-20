@@ -6,7 +6,7 @@ export const createExercise = async (req: Request, res: Response): Promise<void>
     try {
         const exercise: IExercise = new Exercise({
             ...req.body,
-            file: `http://localhost:3001/ead/files/${req.file.filename}`,
+            file: `${process.env.APP_URL}/ead/files/${req.file.filename}`,
         })
         if (!exercise) res.status(401).json({
             code: 401,
