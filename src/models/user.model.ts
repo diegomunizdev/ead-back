@@ -12,6 +12,7 @@ export interface IUser extends Document {
     name: string
     email: string
     password: string | undefined
+    avatar: string
     type: UserType // admin, teacher, tutor and student
     period: number
     gamePoints: number
@@ -35,6 +36,9 @@ const UserSchema = new Mongoose.Schema({
         type: String,
         min: 4,
         required: true
+    },
+    avatar: {
+        type: String
     },
     type: {
         type: UserType,

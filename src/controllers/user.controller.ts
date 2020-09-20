@@ -7,7 +7,10 @@ import bcrypt from 'bcrypt'
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
-        const user: IUser = new User(req.body)
+        const user: IUser = new User({
+            ...req.body,
+            avatar: `http://localhost:3001/ead/files/${req.file.filename}`
+        })
 
         if (!user) res.status(401).json({
             code: 401,
@@ -63,6 +66,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
+            avatar: req.file.fieldname,
             type: req.body.type,
             period: req.body.period,
             gamePoints: req.body.gamePoints,
