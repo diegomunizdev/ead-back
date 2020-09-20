@@ -7,7 +7,7 @@ import './database';
 const port: string = process.env.HTTP_PORT ? process.env.HTTP_PORT : ''
 
 function main() {
-    app.listen(port);
+    app.listen(process.env.PORT || port);
     console.log(`>> Servidor rodando http://localhost:${port}`);
 }
 
