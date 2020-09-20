@@ -9,7 +9,7 @@ dotenv_1.default.config();
 require("./database");
 var port = process.env.HTTP_PORT ? process.env.HTTP_PORT : '';
 function main() {
-    app_1.default.listen(port);
+    app_1.default.listen(process.env.PORT || port);
     console.log(">> Servidor rodando http://localhost:" + port);
 }
 main();
