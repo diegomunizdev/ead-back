@@ -9,7 +9,7 @@ import Routes from './routes/routes'
 // middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-app.use('/ead/files', express.static(path.resolve(__dirname, '..','uploads')))
+app.use('/ead/files', express.static(path.resolve(__dirname, 'src','uploads')))
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", "true");

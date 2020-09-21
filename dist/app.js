@@ -12,7 +12,7 @@ var routes_1 = __importDefault(require("./routes/routes"));
 // middlewares
 app.use(morgan_1.default('dev'));
 app.use(express_1.default.json());
-app.use('/ead/files', express_1.default.static(path_1.default.resolve(__dirname, '..', 'uploads')));
+app.use('/ead/files', express_1.default.static(path_1.default.resolve(__dirname, 'src', 'uploads')));
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", "true");
