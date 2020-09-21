@@ -8,7 +8,7 @@ var multer_1 = __importDefault(require("multer"));
 var now = new Date();
 var storage = multer_1.default.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, 'src/uploads/');
+        callback(null, 'uploads/');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
