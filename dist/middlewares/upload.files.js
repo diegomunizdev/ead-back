@@ -11,7 +11,7 @@ var storage = multer_1.default.diskStorage({
         callback(null, 'src/uploads/');
     },
     filename: function (req, file, callback) {
-        callback(null, now.toLocaleDateString('pt-BR') + "-" + file.originalname);
+        callback(null, file.originalname);
     }
 });
 exports.UploadFile = multer_1.default({ storage: storage });
