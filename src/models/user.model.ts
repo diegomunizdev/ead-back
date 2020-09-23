@@ -42,7 +42,7 @@ const UserSchema = new Mongoose.Schema({
     },
     type: {
         type: UserType,
-        required: true
+        required: true,
     },
     period: {
         type: Number
