@@ -175,6 +175,7 @@ export const PaginationDataType = (model: any) => {
             })
 
             result.data.map((dt: any) => dt.password = undefined)
+            res.header('X-Total-Count', result.total)
             res.status(200).json(result)
         } catch (error) {
             res.status(400).json({
