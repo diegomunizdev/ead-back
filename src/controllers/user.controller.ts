@@ -22,7 +22,6 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         await user.save()
 
-        // TODO: no retorno da resposta a senha não é mostrada
         user.password = undefined
         res.status(201).json(user)
     } catch (error) {
