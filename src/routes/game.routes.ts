@@ -11,16 +11,3 @@ export const GameRoutes = (routes: Router) => {
     .patch('/game/:gameId/update', TokenValidationTeacher, updateGame)
     .delete('/game/:gameId/delete', TokenValidationTeacher, deleteGame)
 }
-
-/**
- * ### POST game
- * {
-      "question": "Pergunta",
-      "options": [], - Uma array com 4 respostas falsas e 1 correta
-      "rightAnswers": "Resposta certa",
-      "period": "", - valor de 1 até 10,
-      "points": 0 - pontos da questão, de 1 até 10
-    }
- *
- *
- */
