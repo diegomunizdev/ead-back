@@ -6,13 +6,11 @@ import jwt from 'jsonwebtoken';
 
 export const signin = async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body
-        // TODO: remover console
-        console.log(password)
+       
         const user = await User.findOne({
             email: req.body.email
-        });
-        console.log(user)
+        }).select('+password');
+
         if (!user) return res.status(400).json({
             code: 400,
             message: 'Email ou senha inválido',
