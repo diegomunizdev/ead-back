@@ -5,7 +5,7 @@ import { UploadFile } from '../middlewares/upload.files'
 
 export const ExerciseRoutes = (routes: Router) => {
     routes.post('/exercises', TokenValidationTeacher, UploadFile.single('file'), createExercise)
-    routes.get('/exercises', TokenValidationTeacher, getAll)
-    routes.patch('/exercises/:exerciseId/update', TokenValidationTeacher, updateExercise)
-    routes.delete('/exercises/:exerciseId/delete', TokenValidationTeacher, deleteExercise)
+        .get('/exercises', TokenValidationTeacher, getAll)
+        .patch('/exercises/:exerciseId/update', TokenValidationTeacher, UploadFile.single('file'), updateExercise)
+        .delete('/exercises/:exerciseId/delete', TokenValidationTeacher, deleteExercise)
 }

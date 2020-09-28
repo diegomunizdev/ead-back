@@ -55,7 +55,7 @@ export const PaginationData = (model: any) => {
     }
 }
 
-export const PaginationDataGame = (model: any) => {
+export const PaginationDataPeriod = (model: any) => {
     return async (req: Request, res: Response) => {
         const page = parseInt(String(req.query.page), 10)
         const limit = parseInt(String(req.query.limit), 10)
@@ -93,7 +93,7 @@ export const PaginationDataGame = (model: any) => {
 
             if (!result.data) res.status(400).json({
                 code: 400,
-                message: 'Pergunta não encontrada',
+                message: 'Dados não encontrados',
                 description: ''
             })
 
