@@ -7,10 +7,7 @@ import bcrypt from 'bcrypt'
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
-        const user: IUser = new User({
-            ...req.body,
-            avatar: `${process.env.APP_URL}/ead/files/${req.file.filename}`
-        })
+        const user: IUser = new User(req.body)
 
         if (!user) res.status(401).json({
             code: 401,
@@ -22,7 +19,6 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         await user.save()
 
-        // TODO: no retorno da resposta a senha não é mostrada
         user.password = undefined
         res.status(201).json(user)
     } catch (error) {
@@ -66,7 +62,6 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            avatar: req.file.fieldname,
             type: req.body.type,
             period: req.body.period,
             gamePoints: req.body.gamePoints,

@@ -38,7 +38,7 @@ export const updateExercise = async (req: Request, res: Response): Promise<void>
         })
 
         const updateExercise = {
-            file: `http://localhost:3001/ead/files/${req.file.filename}`,
+            file: req.file.filename ? `${process.env.APP_URL}/ead/files/${req.file.filename}` : '',
             title: req.body.title,
             description: req.body.description,
             delivery: req.body.delivery

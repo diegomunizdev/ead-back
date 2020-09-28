@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 
 export const signin = async (req: Request, res: Response) => {
     try {
+       
         const user = await User.findOne({
             email: req.body.email
         }).select('+password');
@@ -26,7 +27,7 @@ export const signin = async (req: Request, res: Response) => {
         const token_secret = process.env.TOKEN_SECRET ? process.env.TOKEN_SECRET : ''
 
         const token: string = jwt.sign({ id: user ? user._id : '', type: user ? user.type : '' }, token_secret, {
-            expiresIn: '1d'
+            expiresIn: '30d'
         })
 
         if (!token) return res.status(400).json({

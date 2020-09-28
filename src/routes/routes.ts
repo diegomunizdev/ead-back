@@ -7,11 +7,13 @@ import { UserRoutes } from './user.routes'
 import { GameRoutes } from './game.routes'
 import { ForumRoutes } from './forum.routes'
 import { ExerciseRoutes } from './exercise.routes'
+import { SubjectsRoutes } from './subjects.routes'
 
 AuthRoutes(routes)
 UserRoutes(routes)
 GameRoutes(routes)
 ForumRoutes(routes)
 ExerciseRoutes(routes)
+SubjectsRoutes(routes)
 
 export default routes;

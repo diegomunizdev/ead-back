@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import Game, { IGame } from '../models/game.model'
-import { PaginationData, PaginationDataGame } from '../shared/pagination.shared'
+import { PaginationData, PaginationDataPeriod } from '../shared/pagination.shared'
 
 export const createGame = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -12,7 +12,6 @@ export const createGame = async (req: Request, res: Response): Promise<void> => 
         })
 
         await game.save()
-
         res.status(201).json(game)
     } catch (error) {
         res.status(400).json({
@@ -24,27 +23,7 @@ export const createGame = async (req: Request, res: Response): Promise<void> => 
 
 export const getAll = PaginationData(Game)
 
-export const getByPeriod = PaginationDataGame(Game)
-/* 
-export const getByPeriod = async (req: Request, res: Response): Promise<void> => {
-    try {
-        const game = await Game.find({ period: req.params.period })
-
-        if (!game) res.status(400).json({
-            code: 400,
-            message: 'Não foi possível mostrar os dados desse período'
-        })
-
-        res.status(200).json(game)
-
-    } catch (error) {
-        res.status(400).json({
-            code: 400,
-            message: error.message
-        })
-    }
-}
- */
+export const getByPeriod = PaginationDataPeriod(Game)
 
 export const updateGame = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -85,7 +64,6 @@ export const deleteGame = async (req: Request, res: Response): Promise<void> => 
             code: 400,
             message: 'Não foi possível encontrar o jogo'
         })
-
         res.status(200).json({
             code: 200,
             message: 'Excluído com sucesso'
