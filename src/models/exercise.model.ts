@@ -6,6 +6,7 @@ export interface IExercise extends Document {
     title: string
     description: string
     delivery: string
+    urlVideo: string
     userId: string
 }
 
