@@ -13,9 +13,12 @@ export interface IUser extends Document {
     email: string
     password: string | undefined
     type: UserType // admin, teacher, tutor and student
-    period: number
+    period: string
     gamePoints: number
-    notes: number[]
+    noteOne: number
+    noteTwo: number
+    noteThree: number
+    notaFour: number
     encryptPassword(password: string): Promise<string>
     validatePassword(password: string): Promise<boolean>
 }
@@ -41,15 +44,36 @@ const UserSchema = new Mongoose.Schema({
         required: true,
     },
     period: {
-        type: Number
+        type: String,
+        min: 0,
+        max: 10
     },
     gamePoints: {
-        type: Number
+        type: Number,
+        min: 0,
+        max: 1000
     },
-    notes: {
-        type: Array,
-        max: 2
-    }
+    noteOne: {
+        type: Number,
+        min: 0,
+        max: 10
+    },
+    noteTwo: {
+        type: Number,
+        min: 0,
+        max: 10
+    },
+    noteThree: {
+        type: Number,
+        min: 0,
+        max: 10
+    },
+    noteFour: {
+        type: Number,
+        min: 0,
+        max: 10
+    },
+
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: false },
     toJSON: {

@@ -65,7 +65,10 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             type: req.body.type,
             period: req.body.period,
             gamePoints: req.body.gamePoints,
-            notes: req.body.notes,
+            noteOne: req.body.noteOne,
+            noteTwo: req.body.noteTwo,
+            noteThree: req.body.noteThree,
+            noteFour: req.body.noteFour,
             encryptPassword: async (password: string): Promise<string> => {
                 password = req.body.password
                 const salt = await bcrypt.genSalt(10);
