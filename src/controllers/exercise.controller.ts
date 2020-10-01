@@ -8,6 +8,7 @@ export const createExercise = async (req: Request, res: Response): Promise<void>
             ...req.body,
             file: `${process.env.APP_URL}/ead/files/${req.file.filename}`,
         })
+
         if (!exercise) res.status(401).json({
             code: 401,
             message: 'Não foi possível salvar a imagem',
@@ -59,6 +60,7 @@ export const updateExercise = async (req: Request, res: Response): Promise<void>
 export const deleteExercise = async (req: Request, res: Response) => {
     try {
         const exercise = await Exercise.findByIdAndRemove(req.params.exerciseId)
+
         if (!exercise) res.status(400).json({
             code: 400,
             message: 'Exercício não encontrado',

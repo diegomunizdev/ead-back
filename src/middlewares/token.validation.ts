@@ -25,7 +25,10 @@ export const TokenValidation = (req: Request, res: Response, next: NextFunction)
 
         next()
     } catch (error) {
-
+        res.status(400).json({
+            code: 400,
+            error: error.message
+        })
     }
 }
 
@@ -120,7 +123,7 @@ export const TokenValidationTutor = (req: Request, res: Response, next: NextFunc
         if (!token) res.status(401).json({
             auth: false,
             code: 401,
-            message: 'Token não fornecido'
+            message: 'O token de autorização não foi fornecido'
         })
         const decode: any = jwt.decode(token ? token : '')
         const token_secret: string = process.env.TOKEN_SECRET ? process.env.TOKEN_SECRET : ''

@@ -1,14 +1,14 @@
 import app from './app'
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
 
-import './database';
-
-const port: string = process.env.HTTP_PORT ? process.env.HTTP_PORT : ''
+import './database'
 
 function main() {
-    app.listen(process.env.PORT || port);
-    console.log(`>> Servidor rodando http://localhost:${port}`);
+    app.listen(process.env.PORT || process.env.HTTP_PORT, () => {
+        console.log(`>> Servidor rodando http://localhost:${process.env.HTTP_PORT}`)
+    })
+    
 }
 
 main();

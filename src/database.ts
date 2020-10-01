@@ -10,7 +10,7 @@ const options: mongoose.ConnectionOptions = {
 }
 
 mongoose.connect(database, options).then(result => {
-    console.log('>>> Banco de Dados conectado com sucesso')
+    console.log('>> Banco de Dados conectado com sucesso')
 }).catch(err => {
     console.log('xxx Não foi possível conectar com o Banco de Dados. Error: ', err.message);
 })
