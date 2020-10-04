@@ -3,15 +3,23 @@ import Mongoose, { Document } from 'mongoose'
 export interface IGame extends Document {
     question: string
     rightAnswers: string
-    options: string[]
+    optionOne: string
+    optionTwo: string
+    optionThree: string
+    optionFour: string
+    answered: boolean
     period: string
     points: number
 }
 
 const GameSchema = new Mongoose.Schema({
     question: { type: String, unique: true },
+    answered: { type: Boolean, default: false },
     rightAnswers: { type: String },
-    options: { type: Array },
+    optionOne: { type: String, required: true },
+    optionTwo: { type: String, required: true },
+    optionThree: { type: String, required: true },
+    optionFour: { type: String, required: true },
     period: { type: String },
     points: { type: Number, min: 1, max: 10 }
 }, {

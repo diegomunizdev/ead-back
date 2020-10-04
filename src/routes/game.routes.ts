@@ -1,6 +1,5 @@
 import { Router } from 'express'
 
-// TODO: Adicionar o token na rota posteriormente
 import { TokenValidationAdmin, TokenValidationStudent, TokenValidationTeacher } from '../middlewares/token.validation'
 import { createGame, getAll, getByPeriod, updateGame, deleteGame } from '../controllers/game.controller'
 

@@ -37,7 +37,11 @@ export const updateGame = async (req: Request, res: Response): Promise<void> => 
         const updateGame = {
             question: req.body.question,
             rightAnswers: req.body.rightAnswers,
-            options: req.body.options,
+            optionOne: req.body.optionOne,
+            optionTwo: req.body.optionTwo,
+            optionThree: req.body.optionThree,
+            optionFour: req.body.optionFour,
+            answered: req.body.answered,
             period: req.body.period,
             points: req.body.points
         }
