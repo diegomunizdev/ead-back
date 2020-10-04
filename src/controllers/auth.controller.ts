@@ -3,7 +3,6 @@ import User from '../models/user.model';
 import jwt from 'jsonwebtoken';
 
 // TODO: Verificar o status HTTP
-
 export const signin = async (req: Request, res: Response) => {
     try {
        
@@ -43,4 +42,4 @@ export const signin = async (req: Request, res: Response) => {
             error: error.message
         })
     }
-}
+} 
