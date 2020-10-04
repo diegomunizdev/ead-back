@@ -21,6 +21,14 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 })
 
 // routes
-app.use('/ead', Routes);
+app.use('/ead', Routes)
 
-export default app;
+app.use((req: Request, res: Response, next: NextFunction) => {
+    res.status(404).json({
+        code: 404,
+        message: 'Não encontrado!'
+    })
+    next()
+})
+
+export default app

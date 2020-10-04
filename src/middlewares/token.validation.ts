@@ -48,7 +48,8 @@ export const TokenValidationAdmin = (req: Request, res: Response, next: NextFunc
             jwt.verify(token ? token : '', token_secret) as IPayload
         } else {
             return res.status(401).json({
-                message: 'Acesso Negado. Você não tem permissão para acessar está rota!'
+                code: 401,
+                message: 'Acesso Negado! Você não tem permissão para acessar está rota!'
             })
         }
         next()
