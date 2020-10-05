@@ -61,7 +61,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         const updateUser = {
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
+            // password: req.body.password,
             type: req.body.type,
             period: req.body.period,
             gamePoints: req.body.gamePoints,
@@ -76,13 +76,13 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             }
         }
 
-        updateUser.password = await updateUser.encryptPassword(updateUser.password ? updateUser.password : '')
+        // updateUser.password = await updateUser.encryptPassword(updateUser.password ? updateUser.password : '')
 
         await User.findByIdAndUpdate(user, {
             $set: updateUser
         }, { new: true })
 
-        updateUser.password = undefined
+        // updateUser.password = undefined
 
         res.status(200).json(updateUser)
     } catch (error) {

@@ -25,6 +25,19 @@ export const getAll = PaginationData(Game)
 
 export const getByPeriod = PaginationDataPeriod(Game)
 
+export const getQuestion = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const question = await Game.findOne({ userId: req.params.userId, period: req.params.period, quest: req.params.quest })
+
+        res.status(200).json(question)
+    } catch (error) {
+        res.status(400).json({
+            code: 400,
+            message: error.message
+        })
+    }
+}
+
 export const updateGame = async (req: Request, res: Response): Promise<void> => {
     try {
         const game = await Game.findById(req.params.gameId)
@@ -36,12 +49,15 @@ export const updateGame = async (req: Request, res: Response): Promise<void> => 
 
         const updateGame = {
             question: req.body.question,
-            rightAnswers: req.body.rightAnswers,
+            correctAnswer: req.body.correctAnswer,
+            userResponse: req.body.userResponse,
             options: req.body.options,
             answered: req.body.answered,
             period: req.body.period,
             points: req.body.points
         }
+        // TODO: remover console
+        console.log('update', updateGame)
 
         await Game.findByIdAndUpdate(game, {
             $set: updateGame

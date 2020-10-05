@@ -36,8 +36,7 @@ const UserSchema = new Mongoose.Schema({
     },
     password: {
         type: String,
-        min: 4,
-        required: true
+        min: 4
     },
     type: {
         type: UserType,
