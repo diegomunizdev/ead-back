@@ -1,9 +1,8 @@
 import { Request, Response } from 'express'
-import User, { IUser, UserType } from '../models/user.model'
+import User, { IUser } from '../models/user.model'
 import { PaginationData, PaginationDataType } from '../shared/pagination.shared'
 import bcrypt from 'bcrypt'
-
-// TODO: Verificar os códigos HTTP
+import { ValidateUser } from '../validators/user.validators'
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -14,11 +13,10 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
             message: 'Não foi possível criar o usuário',
             description: ''
         })
-
+        // Em caso de erro entra no catch e envia um mensagem de error
+        await ValidateUser.validate(user)
         user.password = await user.encryptPassword(user.password ? user.password : '')
-
         await user.save()
-
         user.password = undefined
         res.status(201).json(user)
     } catch (error) {
@@ -58,6 +56,8 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
             message: 'Usuário não encontrado',
             description: 'Não foi possível deletar o usuário'
         })
+
+        // TODO: Configurar modo de atualizar senha...
         const updateUser = {
             name: req.body.name,
             email: req.body.email,

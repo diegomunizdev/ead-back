@@ -23,6 +23,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // routes
 app.use('/ead', Routes)
 
+// TODO: Rota para url's não encontradas ou inexistentes 
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({
         code: 404,
