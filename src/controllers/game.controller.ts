@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Game, { IGame } from '../models/game.model'
+import Game, { IGame } from '../models/schemas/game.model'
 import { PaginationData, PaginationDataPeriod } from '../shared/pagination.shared'
 
 export const createGame = async (req: Request, res: Response): Promise<void> => {

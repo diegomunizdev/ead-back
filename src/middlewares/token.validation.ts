@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { UserType } from '../models/user.model';
+import { UserType } from '../models/schemas/user.model';
 
 interface IPayload {
     id: string;

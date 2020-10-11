@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import User, { IUser } from '../models/user.model'
+import User, { IUser } from '../models/schemas/user.model'
 import { PaginationData, PaginationDataType } from '../shared/pagination.shared'
 import bcrypt from 'bcrypt'
-import { ValidateUser } from '../validators/user.validators'
+import { ValidateUser } from '../models/validators/user.validators'
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {

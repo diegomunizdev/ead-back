@@ -1,23 +1,23 @@
 import { Request, Response } from 'express';
-import User from '../models/user.model';
+import User from '../models/schemas/user.model';
 import jwt from 'jsonwebtoken';
 
 // TODO: Verificar o status HTTP
-export const signin = async (req: Request, res: Response) => {
+export const signin = async (req: Request, res: Response): Promise<void> => {
     try {
-       
+
         const user = await User.findOne({
             email: req.body.email
         }).select('+password');
 
-        if (!user) return res.status(400).json({
+        if (!user) res.status(400).json({
             code: 400,
             message: 'Email ou senha inválido',
             description: ''
         })
 
         const correctPassword: boolean = await (user ? user.validatePassword(req.body.password) : false)
-        if (!correctPassword) return res.status(400).json({
+        if (!correctPassword) res.status(400).json({
             code: 400,
             message: 'Senha inválida',
             description: ''
@@ -29,7 +29,7 @@ export const signin = async (req: Request, res: Response) => {
             expiresIn: '30d'
         })
 
-        if (!token) return res.status(400).json({
+        if (!token) res.status(400).json({
             code: 400,
             message: 'Token não fornecido'
         })

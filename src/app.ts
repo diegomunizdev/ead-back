@@ -13,8 +13,8 @@ app.use('/ead/files', express.static(path.resolve(__dirname, '..', 'uploads')))
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
     res.setHeader("Access-Control-Allow-Credentials", "true")
-    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,PATCH,OPTIONS,POST,PUT,DELETE")
-    res.setHeader("Access-Control-Allow-Headers", "Authorization, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
+    res.setHeader("Access-Control-Allow-Methods", "*")
+    res.setHeader("Access-Control-Allow-Headers", "*")
     res.setHeader("Access-Control-Expose-Headers", "X-Total-Count")
     app.use(cors())
     next()
@@ -27,7 +27,7 @@ app.use('/ead', Routes)
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({
         code: 404,
-        message: 'Não encontrado!'
+        message: 'Página não encontrada!'
     })
     next()
 })

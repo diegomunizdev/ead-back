@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import { UserType } from '../models/user.model'
+import { UserType } from '../schemas/user.model'
 /**
  * Yup validation field's
  * https://github.com/jquense/yup
