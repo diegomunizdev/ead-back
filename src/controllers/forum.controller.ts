@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Forum, { IForum } from '../models/forum.model'
+import Forum, { IForum } from '../models/schemas/forum.model'
 import { PaginationData } from '../shared/pagination.shared'
 
 export const createForum = async (req: Request, res: Response): Promise<void> => {

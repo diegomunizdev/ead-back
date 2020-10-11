@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Exercise, { IExercise } from '../models/exercise.model'
+import Exercise, { IExercise } from '../models/schemas/exercise.model'
 import { PaginationData } from '../shared/pagination.shared'
 
 export const createExercise = async (req: Request, res: Response): Promise<void> => {

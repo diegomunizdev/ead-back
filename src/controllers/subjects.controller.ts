@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Subject, { ISubjects } from '../models/subjects.model'
+import Subject, { ISubjects } from '../models/schemas/subjects.model'
 import { PaginationData, PaginationDataPeriod } from '../shared/pagination.shared'
 
 export const createSubject = async (req: Request, res: Response): Promise<void> => {

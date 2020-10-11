@@ -11,6 +11,6 @@ export const UserRoutes = (routes: Router) => {
                 .get('/users', TokenValidationAdmin, getAll)
                 .get('/user/type/:usertype', TokenValidationTeacher, getByType)
                 .get(`${url_user}/profile`, TokenValidation, getByUserId)
-                .patch(`${url_user}/update`, TokenValidationAdmin, updateUser)
+                .patch(`${url_user}/update`, updateUser)
                 .delete(`${url_user}/delete`, TokenValidationAdmin, deleteUser)
 }

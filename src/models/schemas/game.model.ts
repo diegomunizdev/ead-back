@@ -2,18 +2,24 @@ import Mongoose, { Document } from 'mongoose'
 
 export interface IGame extends Document {
     question: string
-    rightAnswers: string
+    correctAnswer: string
+    userResponse: string
     options: string[]
+    answered: boolean
     period: string
     points: number
+    userId: string
 }
 
 const GameSchema = new Mongoose.Schema({
     question: { type: String, unique: true },
-    rightAnswers: { type: String },
+    correctAnswer: { type: String },
+    userResponse: { type: String },
     options: { type: Array },
+    answered: { type: Boolean, default: false },
     period: { type: String },
-    points: { type: Number, min: 1, max: 10 }
+    points: { type: Number, min: 1, max: 10 },
+    userId: { type: String }
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: false },
     toJSON: {

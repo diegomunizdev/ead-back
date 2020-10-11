@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { UserType } from '../models/user.model'
+import { UserType } from '../models/schemas/user.model'
 
 export const PaginationData = (model: any) => {
     return async (req: Request, res: Response) => {
