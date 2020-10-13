@@ -1,5 +1,5 @@
 import Entity from "./Entity"
-import { JsonUtils } from "./Util"
+import bcrypt from 'bcrypt';
 
 export enum UserType {
     ADMIN = 'admin',
@@ -8,7 +8,7 @@ export enum UserType {
     STUDENT = 'student'
 }
 
-class User extends Entity {
+export default class User extends Entity {
     private _name: string | undefined
     private _email: string | undefined
     private _password: string | undefined
@@ -169,6 +169,15 @@ class User extends Entity {
             noteThree: this.noteThree ? this.noteThree : undefined,
             noteFour: this.noteFour ? this.noteFour : undefined
         }
+    }
+
+    public async encryptPassword(password: string): Promise<string> {
+        const salt = await bcrypt.genSalt(10)
+        return Promise.resolve(bcrypt.hash(password, salt))
+    }
+
+    public async validatePassword(password: string): Promise<boolean> {
+        return Promise.resolve(bcrypt.compare(password, this.password ? this.password : ''))
     }
 
 }

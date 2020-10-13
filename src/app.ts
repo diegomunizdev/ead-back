@@ -4,7 +4,7 @@ import cors from 'cors'
 import path from 'path'
 const app: Application = express();
 
-import Routes from './routes/routes'
+import Routes, { RoutesTeste } from './routes/routes'
 
 // middlewares
 app.use(morgan('dev'))
