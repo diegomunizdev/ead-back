@@ -56,8 +56,6 @@ export const updateGame = async (req: Request, res: Response): Promise<void> => 
             period: req.body.period,
             points: req.body.points
         }
-        // TODO: remover console
-        console.log('update', updateGame)
 
         await Game.findByIdAndUpdate(game, {
             $set: updateGame
