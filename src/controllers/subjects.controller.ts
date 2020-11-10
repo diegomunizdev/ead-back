@@ -35,7 +35,6 @@ export const getByTeacher = async (req: Request, res: Response): Promise<void> =
         })
 
         res.status(200).json(subjects)
-
     } catch (error) {
         res.status(400).json({
             code: 400,
