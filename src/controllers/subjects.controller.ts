@@ -35,7 +35,6 @@ export const getByTeacher = async (req: Request, res: Response): Promise<void> =
         })
 
         res.status(200).json(subjects)
-
     } catch (error) {
         res.status(400).json({
             code: 400,
@@ -83,7 +82,7 @@ export const updateSubject = async (req: Request, res: Response): Promise<void> 
 
         await Subject.findByIdAndUpdate(subjectId, {
             $set: updateSubject
-        })
+        }, { new: true })
 
         res.json(200).json(updateSubject)
     } catch (error) {

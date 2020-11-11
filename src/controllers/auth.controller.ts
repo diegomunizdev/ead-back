@@ -25,7 +25,11 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
 
         const token_secret = process.env.TOKEN_SECRET ? process.env.TOKEN_SECRET : ''
 
-        const token: string = jwt.sign({ id: user ? user._id : '', type: user ? user.type : '' }, token_secret, {
+        const token: string = jwt.sign({
+            id: user ? user._id : '',
+            type: user ? user.type : '',
+            period: user?.period
+        }, token_secret, {
             expiresIn: '30d'
         })
 
@@ -42,4 +46,4 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
             error: error.message
         })
     }
-} 
+}

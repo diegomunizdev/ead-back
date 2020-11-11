@@ -7,7 +7,7 @@ const url_user = '/user/:userId'
 
 // user
 export const UserRoutes = (routes: Router) => {
-        routes.post('/user', TokenValidationAdmin, createUser)
+        routes.post('/user', createUser)
                 .get('/users', TokenValidationAdmin, getAll)
                 .get('/user/type/:usertype', TokenValidationTeacher, getByType)
                 .get(`${url_user}/profile`, TokenValidation, getByUserId)

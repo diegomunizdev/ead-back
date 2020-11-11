@@ -8,6 +8,7 @@ export interface ISubjects extends Document {
     period: string
     teacherId: string
     listStudent: IUser[]
+    classRegistration: string[]
 }
 
 const SubjectSchema = new Mongoose.Schema({
