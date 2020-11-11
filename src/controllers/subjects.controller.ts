@@ -82,7 +82,7 @@ export const updateSubject = async (req: Request, res: Response): Promise<void> 
 
         await Subject.findByIdAndUpdate(subjectId, {
             $set: updateSubject
-        })
+        }, { new: true })
 
         res.json(200).json(updateSubject)
     } catch (error) {
