@@ -24,7 +24,7 @@ export const createClasses = async (req: Request, res: Response): Promise<void> 
 
 export const getBySubjectId = async (req: Request, res: Response): Promise<void> => {
     try {
-        const classesBySubjects = await Classes.findById(req.params.subjectId)
+        const classesBySubjects = await Classes.find({ subjectId: req.params.subjectId })
 
         if (!classesBySubjects) res.status(401).json({
             code: 401,
@@ -43,7 +43,7 @@ export const getBySubjectId = async (req: Request, res: Response): Promise<void>
 
 export const updateClasses = async (req: Request, res: Response): Promise<void> => {
     try {
-        const classesId = await Classes.findById(req.params.classesId)
+        const classesId = await Classes.findById({ id: req.params.classesId })
 
         if (!classesId) res.status(400).json({
             code: 400,

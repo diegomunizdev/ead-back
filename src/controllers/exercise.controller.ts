@@ -42,7 +42,8 @@ export const updateExercise = async (req: Request, res: Response): Promise<void>
             file: req.file.filename ? `${process.env.APP_URL}/ead/files/${req.file.filename}` : '',
             title: req.body.title,
             description: req.body.description,
-            delivery: req.body.delivery
+            delivery: req.body.delivery,
+            urlVideo: req.body.urlVideo
         }
         await Exercise.findByIdAndUpdate(exercise, {
             $set: updateExercise
