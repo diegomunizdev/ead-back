@@ -2,22 +2,20 @@ import Mongoose, { Document } from 'mongoose'
 
 export interface IExercise extends Document {
     file: string
-    chair: string
     title: string
     description: string
     delivery: string
     urlVideo: string
-    userId: string
+    subjectId: string
 }
 
 const ExerciseSchema = new Mongoose.Schema({
     file: { type: String, required: true },
-    chair: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
     delivery: { type: String },
     urlVideo: { type: String },
-    userId: { type: String, required: true }
+    subjectId: { type: String },
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: false },
     toJSON: {
