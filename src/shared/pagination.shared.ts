@@ -41,7 +41,7 @@ export const PaginationData = (model: any) => {
 
             if (!result.data) res.status(400).json({
                 code: 400,
-                message: 'Usuários não encontrados',
+                message: 'Dados não encontrados...',
                 description: ''
             })
             res.header('X-Total-Count', result.total)

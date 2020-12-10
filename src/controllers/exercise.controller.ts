@@ -9,9 +9,11 @@ export const createExercise = async (req: Request, res: Response): Promise<void>
             file: `${process.env.APP_URL}/ead/files/${req.file.filename}`,
         })
 
+        console.log('req.file:', req.file.filename)
+
         if (!exercise) res.status(401).json({
             code: 401,
-            message: 'Não foi possível salvar a imagem',
+            message: 'Não foi possível salvar o arquivo',
             description: ''
         })
 
