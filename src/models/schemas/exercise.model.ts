@@ -4,6 +4,7 @@ export interface IExercise extends Document {
     file: string
     title: string
     description: string
+    period: string
     delivery: string
     urlVideo: string
     subjectId: string
@@ -13,6 +14,7 @@ const ExerciseSchema = new Mongoose.Schema({
     file: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
+    period: { type: String, required: true },
     delivery: { type: String },
     urlVideo: { type: String },
     subjectId: { type: String },

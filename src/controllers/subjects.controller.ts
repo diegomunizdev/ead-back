@@ -76,8 +76,7 @@ export const updateSubject = async (req: Request, res: Response): Promise<void> 
             shift: req.body.shift,
             schedule: req.body.schudule,
             period: req.body.period,
-            teacherId: req.body.teacherId,
-            listStudent: req.body.listStudent
+            teacherId: req.body.teacherId
         }
 
         await Subject.findByIdAndUpdate(subjectId, {

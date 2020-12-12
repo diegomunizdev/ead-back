@@ -4,16 +4,11 @@ import { PaginationData } from '../shared/pagination.shared'
 
 export const createExercise = async (req: Request, res: Response): Promise<void> => {
     try {
-        const exercise: IExercise = new Exercise({
-            ...req.body,
-            file: `${process.env.APP_URL}/ead/files/${req.file.filename}`,
-        })
-
-        console.log('req.file:', req.file.filename)
+        const exercise: IExercise = new Exercise(req.body)
 
         if (!exercise) res.status(401).json({
             code: 401,
-            message: 'Não foi possível salvar o arquivo',
+            message: 'Não foi possível salvar o exercício',
             description: ''
         })
 
@@ -41,9 +36,10 @@ export const updateExercise = async (req: Request, res: Response): Promise<void>
         })
 
         const updateExercise = {
-            file: req.file.filename ? `${process.env.APP_URL}/ead/files/${req.file.filename}` : '',
+            file: req.body.file,
             title: req.body.title,
             description: req.body.description,
+            period: req.body.period,
             delivery: req.body.delivery,
             urlVideo: req.body.urlVideo
         }
