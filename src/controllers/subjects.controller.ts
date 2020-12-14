@@ -27,7 +27,7 @@ export const getByPeriod = PaginationDataPeriod(Subject)
 export const getByTeacher = async (req: Request, res: Response): Promise<void> => {
     try {
         const subjects = await Subject.find({ teacherId: req.params.teacherId })
-
+        
         if (!subjects) res.status(400).json({
             code: 400,
             message: 'Nenhuma disciplina encontrada',
@@ -74,7 +74,7 @@ export const updateSubject = async (req: Request, res: Response): Promise<void> 
         const updateSubject = {
             name: req.body.name,
             shift: req.body.shift,
-            schedule: req.body.schudule,
+            schedule: req.body.schedule,
             period: req.body.period,
             teacherId: req.body.teacherId
         }
@@ -94,7 +94,7 @@ export const updateSubject = async (req: Request, res: Response): Promise<void> 
 
 export const deleteSubject = async (req: Request, res: Response): Promise<void> => {
     try {
-        const subject = await Subject.findByIdAndRemove(req.params.subjectId)
+        const subject = await Subject.findByIdAndDelete(req.params.subjectId)
 
         if (!subject) res.status(400).json({
             code: 400,

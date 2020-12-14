@@ -9,6 +9,7 @@ import { ForumRoutes } from './forum.routes'
 import { ExerciseRoutes } from './exercise.routes'
 import { SubjectsRoutes } from './subjects.routes'
 import { ClassesRoutes } from './classes.routes'
+import { MessageRoutes } from './messages.routes'
 
 AuthRoutes(routes)
 UserRoutes(routes)
@@ -17,5 +18,6 @@ ForumRoutes(routes)
 ExerciseRoutes(routes)
 SubjectsRoutes(routes)
 ClassesRoutes(routes)
+MessageRoutes(routes)
 
 export default routes;

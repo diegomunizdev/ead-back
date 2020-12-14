@@ -1,5 +1,4 @@
 import Mongoose, { Document } from 'mongoose'
-import { IUser } from './user.model'
 
 export interface ISubjects extends Document {
     name: string
