@@ -5,6 +5,8 @@ import { PaginationData } from '../shared/pagination.shared'
 export const createForum = async (req: Request, res: Response): Promise<void> => {
     try {
         const forum: IForum = new Forum(req.body)
+        // TODO remover
+        console.log('forum: ', forum)
         if (!forum) res.status(401).json({
             code: 401,
             message: 'Não foi possível criar o assunto no fórum',
@@ -53,8 +55,7 @@ export const updateForum = async (req: Request, res: Response): Promise<void> =>
 
         const updateForum = {
             title: req.body.title,
-            subtitle: req.body.subtitle,
-            message: req.body.message
+            subtitle: req.body.subtitle
         }
 
         await Forum.findByIdAndUpdate(forum, {

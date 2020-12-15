@@ -1,5 +1,4 @@
 import Mongoose, { Document } from 'mongoose'
-import { IUser } from './user.model'
 
 export interface ISubjects extends Document {
     name: string
@@ -7,8 +6,6 @@ export interface ISubjects extends Document {
     schedule: string
     period: string
     teacherId: string
-    listStudent: IUser[]
-    classRegistration: string[]
 }
 
 const SubjectSchema = new Mongoose.Schema({
@@ -16,8 +13,7 @@ const SubjectSchema = new Mongoose.Schema({
     shift: { type: String },
     schedule: { type: String },
     period: { type: String },
-    teacherId: { type: String },
-    listStudent: { type: Array }
+    teacherId: { type: String }
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: false },
     toJSON: {

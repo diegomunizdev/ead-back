@@ -97,8 +97,6 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
     try {
         const user = await User.findByIdAndRemove(req.params.userId)
 
-
-
         if (!user) res.status(400).json({
             code: 400,
             message: 'Usuário não encontrado',

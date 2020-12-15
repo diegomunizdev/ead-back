@@ -10,11 +10,13 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
             email: req.body.email
         }).select('+password');
 
-        if (!user) res.status(400).json({
-            code: 400,
-            message: 'Email ou senha inválido',
-            description: ''
-        })
+        if (!user) {
+            res.status(400).json({
+                code: 400,
+                message: 'Email ou senha inválido',
+                description: ''
+            })
+        }
 
         const correctPassword: boolean = await (user ? user.validatePassword(req.body.password) : false)
         if (!correctPassword) res.status(400).json({
